@@ -16,26 +16,26 @@ namespace IIME
     {
         private const string UPDATEURL = "https://raw.githubusercontent.com/iuuniang/IIME/main/update.txt";
 
-        private const string m_strPlaceholderTrue = "{IME:ON}";
-        private const string m_strPlaceholderFalse = "{IME:OFF}";
+        private const string m_strPlaceholderEnglish = "{IME:EN}";
+        private const string m_strPlaceholderChinese = "{IME:CN}";
 
         private IPluginHost m_host = null;
 
         public override bool Initialize(IPluginHost host)
         {
             m_host = host;
-            AutoType.FilterCompilePre += this.OnAutoTypeFilterCompilePre;
-            SprEngine.FilterPlaceholderHints.Add(m_strPlaceholderTrue);
-            SprEngine.FilterPlaceholderHints.Add(m_strPlaceholderFalse);
+            AutoType.FilterSendPre += this.OnAutoTypeFilterSendPre;
+            SprEngine.FilterPlaceholderHints.Add(m_strPlaceholderEnglish);
+            SprEngine.FilterPlaceholderHints.Add(m_strPlaceholderChinese);
 
             return true;
         }
 
         public override void Terminate()
         {
-            SprEngine.FilterPlaceholderHints.Remove(m_strPlaceholderTrue);
-            SprEngine.FilterPlaceholderHints.Remove(m_strPlaceholderFalse);
-            AutoType.FilterCompilePre -= this.OnAutoTypeFilterCompilePre;
+            SprEngine.FilterPlaceholderHints.Remove(m_strPlaceholderEnglish);
+            SprEngine.FilterPlaceholderHints.Remove(m_strPlaceholderChinese);
+            AutoType.FilterSendPre -= this.OnAutoTypeFilterSendPre;
         }
 
         public override string UpdateUrl
@@ -48,25 +48,34 @@ namespace IIME
             get { return (Image)KeePass.Program.Resources.GetObject("B16x16_KTouch"); }
         }
 
-        private void OnAutoTypeFilterCompilePre(object sender, AutoTypeEventArgs autoTypeEventArgs)
+        private void OnAutoTypeFilterSendPre(object sender, AutoTypeEventArgs autoTypeEventArgs)
         {
-            Regex replacerTrue = new Regex(Regex.Escape(m_strPlaceholderTrue), RegexOptions.IgnoreCase);
-            Regex replacerFalse = new Regex(Regex.Escape(m_strPlaceholderFalse), RegexOptions.IgnoreCase);
+            Regex replacerEnglish = new Regex(Regex.Escape(m_strPlaceholderEnglish), RegexOptions.IgnoreCase);
+            Regex replacerChinese = new Regex(Regex.Escape(m_strPlaceholderChinese), RegexOptions.IgnoreCase);
 
-            autoTypeEventArgs.Sequence = replacerTrue.Replace(autoTypeEventArgs.Sequence, match =>
+
+            autoTypeEventArgs.Sequence = replacerEnglish.Replace(autoTypeEventArgs.Sequence, match =>
             {
 
-                SetOpenStatus(1);
+                SetIMEStatus(0x0001); // 英文输入
                 return String.Empty;
             });
 
-            autoTypeEventArgs.Sequence = replacerFalse.Replace(autoTypeEventArgs.Sequence, match =>
+            autoTypeEventArgs.Sequence = replacerChinese.Replace(autoTypeEventArgs.Sequence, match =>
             {
-                SetOpenStatus(0);
+                SetIMEStatus(0x0009); // 中文输入
                 return String.Empty;
             });
         }
 
+        [DllImport("Imm32.dll")]
+        private static extern bool ImmSetConversionStatus(IntPtr hIMC, int fdwConversion, int fdwSentence);
+
+        [DllImport("Imm32.dll")]
+        private static extern IntPtr ImmGetContext(IntPtr hWnd);
+
+        [DllImport("Imm32.dll")]
+        private static extern bool ImmReleaseContext(IntPtr hWnd, IntPtr hIMC);
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -78,11 +87,15 @@ namespace IIME
         static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
 
 
-        private void SetOpenStatus(int status)
+        private void SetIMEStatus(int status)
         {
             IntPtr hWnd = GetForegroundWindow();
-            IntPtr handle = ImmGetDefaultIMEWnd(hWnd);
-            if(handle.ToInt32() != 0 ) SendMessage(handle, 0x283, 6, status);
+            IntPtr hIMC = ImmGetContext(hWnd);
+            if (hIMC != IntPtr.Zero)
+            {
+                ImmSetConversionStatus(hIMC, status, 0);
+                ImmReleaseContext(hWnd, hIMC);
+            }
         }
     }
 }
