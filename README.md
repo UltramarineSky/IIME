@@ -36,4 +36,4 @@ AutoType.FilterCompilePre 下返回 `{VKEY 16}` 用来代替 `SHIFT键` 在编�
 - *编辑顶级群组—自动输入—替代默认序列为：`{DELAY 100}{CLEARFIELD}{IME:EN}{USERNAME}{TAB}{PASSWORD}{DELAY 100}{ENTER}{IME:CN}`—确定* 即可，其余的子群组都可以继承这个默认序列。
 
 ## 备注
-编译PLGX的方法：.\KeePass.exe --plgx-create D:\IIME --plugx-prereq-os:Windows
+编译PLGX的方法：```.\KeePass.exe --plgx-create D:\IIME --plugx-prereq-os:Windows```
