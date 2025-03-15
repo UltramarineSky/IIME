@@ -24,16 +24,16 @@ namespace IIME
         {
             m_host = host;
             AutoType.FilterCompilePre += this.OnAutoTypeFilterCompilePre;
-            SprEngine.FilterPlaceholderHints.Add($"{{{m_strPlaceholderEnglish}}}");
-            SprEngine.FilterPlaceholderHints.Add($"{{{m_strPlaceholderChinese}}}");
+            SprEngine.FilterPlaceholderHints.Add(string.Format("{{{0}}}", m_strPlaceholderEnglish));
+            SprEngine.FilterPlaceholderHints.Add(string.Format("{{{0}}}", m_strPlaceholderChinese));
 
             return true;
         }
 
         public override void Terminate()
         {
-            SprEngine.FilterPlaceholderHints.Remove($"{{{m_strPlaceholderEnglish}}}");
-            SprEngine.FilterPlaceholderHints.Remove($"{{{m_strPlaceholderChinese}}}");
+            SprEngine.FilterPlaceholderHints.Remove(string.Format("{{{0}}}", m_strPlaceholderEnglish));
+            SprEngine.FilterPlaceholderHints.Remove(string.Format("{{{0}}}", m_strPlaceholderChinese));
             AutoType.FilterCompilePre -= this.OnAutoTypeFilterCompilePre;
 
         }
@@ -50,8 +50,8 @@ namespace IIME
 
         private void OnAutoTypeFilterCompilePre(object sender, AutoTypeEventArgs autoTypeEventArgs)
         {
-            Regex replacerEnglish = new Regex($@"{{{m_strPlaceholderEnglish}(?:@(\d+))?}}", RegexOptions.IgnoreCase);
-            Regex replacerChinese = new Regex($@"{{{m_strPlaceholderChinese}(?:@(\d+))?}}", RegexOptions.IgnoreCase);
+            Regex replacerEnglish = new Regex(string.Format(@"{{{0}(?:@(\d+))?}}", m_strPlaceholderEnglish), RegexOptions.IgnoreCase);
+            Regex replacerChinese = new Regex(string.Format(@"{{{0}(?:@(\d+))?}}", m_strPlaceholderChinese), RegexOptions.IgnoreCase);
 
             
             autoTypeEventArgs.Sequence = replacerEnglish.Replace(autoTypeEventArgs.Sequence, match =>
@@ -61,7 +61,7 @@ namespace IIME
                 _imeStatus = InputMethodController.GetIMEStatus();
                 if (_imeStatus)
                 {
-                    return $"{{VKEY {vkey}}}";
+                    return string.Format("{{VKEY {0}}}", vkey);
                 }
                 else
                 {
@@ -77,7 +77,7 @@ namespace IIME
                 if (_imeStatus)
                 {
                     _imeStatus = false;
-                    return $"{{VKEY {vkey}}}";
+                    return string.Format("{{VKEY {0}}}", vkey);
                 }
                 else
                 {
@@ -156,7 +156,7 @@ namespace IIME
                 return SetOpenStatus(status) == IntPtr.Zero;
             }
 
-            public static bool GetIMEStatus(IntPtr hWnd = default)
+            public static bool GetIMEStatus(IntPtr hWnd = default(IntPtr))
             {
                 if (hWnd == IntPtr.Zero)
                 {
@@ -172,7 +172,7 @@ namespace IIME
                 if ((convMode & IME_CMODE_NOCONVERSION) != 0 ) {return false;}
                 return opened && ((convMode & IME_CMODE_LANGUAGE) != 0);
             }
-            private static IntPtr? SetOpenStatus(uint status,IntPtr hWnd = default)
+            private static IntPtr? SetOpenStatus(uint status,IntPtr hWnd = default(IntPtr))
             {
                 if (hWnd == IntPtr.Zero)
                 {
@@ -181,7 +181,7 @@ namespace IIME
                 return ImeControl(hWnd, IMC_SETOPENSTATUS, status);
             }
     
-            private static ushort GetCurrentLangIdByHwnd(IntPtr hWnd = default)
+            private static ushort GetCurrentLangIdByHwnd(IntPtr hWnd)
             {
                 if (hWnd == IntPtr.Zero)
                 {
@@ -192,7 +192,7 @@ namespace IIME
                 return (ushort)((uint)GetKeyboardLayout(threadId).ToInt32() & 0xFFFF);
             }
 
-            private static int? GetConversionMode(IntPtr hWnd = default)
+            private static int? GetConversionMode(IntPtr hWnd)
             {
                 if (hWnd == IntPtr.Zero)
                 {
@@ -209,7 +209,7 @@ namespace IIME
                 }
             }
 
-            private static bool GetOpenStatus(IntPtr hWnd = default)
+            private static bool GetOpenStatus(IntPtr hWnd)
             {
                 if (hWnd == IntPtr.Zero)
                 {
@@ -219,7 +219,7 @@ namespace IIME
             }
 
 
-            private static IntPtr? ImeControl(IntPtr hWnd,uint command,uint data = default)
+            private static IntPtr? ImeControl(IntPtr hWnd = default(IntPtr), uint command = 0,uint data = 0)
             {
                 if (hWnd == IntPtr.Zero)
                 {
@@ -233,7 +233,7 @@ namespace IIME
                 return null;
             }
 
-            private static IntPtr? GetFocus(IntPtr hWnd = default,bool real=false)
+            private static IntPtr? GetFocus(IntPtr hWnd,bool real=false)
             {
                 if (hWnd == IntPtr.Zero)
                 {
