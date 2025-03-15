@@ -9,7 +9,7 @@
 	</Meta>
 	<Application>
 		<LanguageFile>Chinese_Simplified.lngx</LanguageFile>
-		<LastUpdateCheck>2025-03-14T16:46:35Z</LastUpdateCheck>
+		<LastUpdateCheck>2025-03-15T09:42:41Z</LastUpdateCheck>
 		<LastUsedFile>
 			<Path>test.kdbx</Path>
 			<CredProtMode>Obf</CredProtMode>
@@ -59,6 +59,8 @@
 		</TriggerSystem>
 		<PluginCachePath>{APPDIR}\PluginCache</PluginCachePath>
 		<PluginCompatibility>
+			<Item>@bzD/bDIpNRStPZN/tBy6qmHk7jzBr7eiJEdlTvdwfrw=@2.58.0.0@1</Item>
+			<Item>@6b0+0yNqZK4Huom/yAxlI/i10g7ycW0dTV2MJFUaH5k=@2.58.0.0@1</Item>
 			<Item>@VT5RKd6N9eZsNqghCAWDvktUY2QkiCGLRzVRgPURSoQ=@2.58.0.0@1</Item>
 			<Item>@XOaFKJRbxHvsmmXQarzDTGO1bjQCzcHDeDStEzRk/vE=@2.58.0.0@1</Item>
 			<Item>@l2EELfp8kHgH6XhL7qaMtctA92iz5dNyR2cmxESBGKo=@2.47.0.21109@1</Item>
@@ -121,8 +123,6 @@
 			<Item>@iimxgIsndmwaOcv72IwwdqLy6uEm/76DQioiqZNiLV4=@2.44.0.19625@1</Item>
 			<Item>@eD8/5GMffy1WkymVsX3rnfmV11470fKPsGoPnXMasvY=@2.44.0.19625@1</Item>
 			<Item>@6G1KaGxArpTV+Pp497XevLgcr9seCAybKY8BnlADW+k=@2.44.0.19625@1</Item>
-			<Item>@aKhZ1kW6cL1HXyf11FyajfgDuduhM6EJFYPb2PvZebU=@2.44.0.19625@1</Item>
-			<Item>@5TJt59w3BoKCVRbfIv8soXrONNXh+D/fOc3a3e8o4Hg=@2.44.0.19625@1</Item>
 		</PluginCompatibility>
 	</Application>
 	<Logging />
@@ -154,24 +154,24 @@
 		</ListSorting>
 	</MainWindow>
 	<UI>
+		<ToolStripRenderer>OeUFBLZWFOdPE2hRhbOHxg==</ToolStripRenderer>
+		<BannerStyle>Dark</BannerStyle>
 		<TrayIcon />
 		<Hiding>
 			<UnhideButtonAlsoUnhidesSource>true</UnhideButtonAlsoUnhidesSource>
 		</Hiding>
 		<StandardFont>
-			<Family>Microsoft Sans Serif</Family>
-			<Size>8.25</Size>
+			<Family>宋体</Family>
+			<Size>9</Size>
 			<GraphicsUnit>Point</GraphicsUnit>
 			<OverrideUIDefault>false</OverrideUIDefault>
 		</StandardFont>
 		<PasswordFont>
 			<Family>Courier New</Family>
-			<Size>8.25</Size>
+			<Size>9</Size>
 			<GraphicsUnit>Point</GraphicsUnit>
 			<OverrideUIDefault>false</OverrideUIDefault>
 		</PasswordFont>
-		<BannerStyle>Dark</BannerStyle>
-		<ToolStripRenderer>OeUFBLZWFOdPE2hRhbOHxg==</ToolStripRenderer>
 		<TreeViewShowLines>true</TreeViewShowLines>
 		<DataEditorFont>
 			<Family>Microsoft Sans Serif</Family>
@@ -186,11 +186,11 @@
 	</UI>
 	<Security>
 		<WorkspaceLocking>
+			<LockAfterTime>240</LockAfterTime>
+			<LockAfterGlobalTime>60</LockAfterGlobalTime>
 			<LockOnSessionSwitch>true</LockOnSessionSwitch>
 			<LockOnSuspend>true</LockOnSuspend>
 			<LockOnRemoteControlChange>true</LockOnRemoteControlChange>
-			<LockAfterTime>240</LockAfterTime>
-			<LockAfterGlobalTime>60</LockAfterGlobalTime>
 		</WorkspaceLocking>
 		<Policy />
 		<MasterPassword>
@@ -230,7 +230,7 @@
 		<UserProfiles />
 	</Search>
 	<Defaults>
-		<OptionsTabIndex>4</OptionsTabIndex>
+		<OptionsTabIndex>5</OptionsTabIndex>
 		<KeySources>
 			<Association>
 				<DatabasePath>pass.kdbx</DatabasePath>
@@ -288,6 +288,7 @@
 		<AutoTypeMatchByUrlHostInTitle>true</AutoTypeMatchByUrlHostInTitle>
 		<AutoTypeMatchByTagInTitle>true</AutoTypeMatchByTagInTitle>
 		<AutoTypeAlwaysShowSelDialog>true</AutoTypeAlwaysShowSelDialog>
+		<AutoTypeAllowInterleaved>true</AutoTypeAllowInterleaved>
 		<AutoTypeCancelOnWindowChange>true</AutoTypeCancelOnWindowChange>
 		<AutoTypeCancelOnTitleChange>true</AutoTypeCancelOnTitleChange>
 		<AutoTypeAbortOnWindows />
