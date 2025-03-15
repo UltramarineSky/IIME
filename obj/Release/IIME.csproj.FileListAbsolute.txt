@@ -25,3 +25,4 @@ C:\Users\iuuni\source\repos\iuuniang\IIME\obj\Release\IIME.csproj.CoreCompileInp
 C:\Users\iuuni\source\repos\iuuniang\IIME\obj\Release\IIME.csproj.Up2Date
 C:\Users\iuuni\source\repos\iuuniang\IIME\obj\Release\IIME.dll
 C:\Users\iuuni\source\repos\iuuniang\IIME\obj\Release\IIME.pdb
+C:\Users\iuuni\source\repos\iuuniang\IIME\bin\Release\KeePass.exe
