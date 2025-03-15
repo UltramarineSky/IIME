@@ -23,7 +23,6 @@ KeePass Password Safe 2 的中文输入法切换插件
 
 
 ## 原理
-
 其实就是检测输入法状态，然后后台发送 `SHIFT键` 进行中英文切换。
 AutoType.FilterCompilePre 下返回 `{VKEY 16}` 用来代替 `SHIFT键` 在编译击键序列的时候就会按下该按键。
 
@@ -31,9 +30,10 @@ AutoType.FilterCompilePre 下返回 `{VKEY 16}` 用来代替 `SHIFT键` 在编�
 
 默认状态使用 **{IME:CN} {IME:CN}** 即可，其VKEY取值为16。
 
-
-
 ## 操作步骤
 - 安装插件。将下载的 `IIME.PLGX` 文件放入 **KeePass** 插件目录下。
 - 重新启动 **KeePass**程序。
 - *编辑顶级群组—自动输入—替代默认序列为：`{DELAY 100}{CLEARFIELD}{IME:EN}{USERNAME}{TAB}{PASSWORD}{DELAY 100}{ENTER}{IME:CN}`—确定* 即可，其余的子群组都可以继承这个默认序列。
+
+## 备注
+编译PLGX的方法：.\KeePass.exe --plgx-create D:\IIME --plugx-prereq-os:Windows
