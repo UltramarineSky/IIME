@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Configuration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<Meta>
 		<Version>2.58</Version>
 		<PreferUserConfiguration>false</PreferUserConfiguration>
@@ -154,8 +154,6 @@
 		</ListSorting>
 	</MainWindow>
 	<UI>
-		<ToolStripRenderer>OeUFBLZWFOdPE2hRhbOHxg==</ToolStripRenderer>
-		<BannerStyle>Dark</BannerStyle>
 		<TrayIcon />
 		<Hiding>
 			<UnhideButtonAlsoUnhidesSource>true</UnhideButtonAlsoUnhidesSource>
@@ -172,6 +170,8 @@
 			<GraphicsUnit>Point</GraphicsUnit>
 			<OverrideUIDefault>false</OverrideUIDefault>
 		</PasswordFont>
+		<BannerStyle>Dark</BannerStyle>
+		<ToolStripRenderer>OeUFBLZWFOdPE2hRhbOHxg==</ToolStripRenderer>
 		<TreeViewShowLines>true</TreeViewShowLines>
 		<DataEditorFont>
 			<Family>Microsoft Sans Serif</Family>
@@ -186,11 +186,11 @@
 	</UI>
 	<Security>
 		<WorkspaceLocking>
-			<LockAfterTime>240</LockAfterTime>
-			<LockAfterGlobalTime>60</LockAfterGlobalTime>
 			<LockOnSessionSwitch>true</LockOnSessionSwitch>
 			<LockOnSuspend>true</LockOnSuspend>
 			<LockOnRemoteControlChange>true</LockOnRemoteControlChange>
+			<LockAfterTime>240</LockAfterTime>
+			<LockAfterGlobalTime>60</LockAfterGlobalTime>
 		</WorkspaceLocking>
 		<Policy />
 		<MasterPassword>
