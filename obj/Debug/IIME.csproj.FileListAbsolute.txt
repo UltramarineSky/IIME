@@ -18,10 +18,3 @@ C:\Users\iuuni\Desktop\IIME\obj\Debug\IIME.csproj.CoreCompileInputs.cache
 C:\Users\iuuni\Desktop\IIME\obj\Debug\IIME.csproj.CopyComplete
 C:\Users\iuuni\Desktop\IIME\obj\Debug\IIME.dll
 C:\Users\iuuni\Desktop\IIME\obj\Debug\IIME.pdb
-C:\Users\iuuni\source\repos\iuuniang\IIME\bin\Debug\IIME.dll
-C:\Users\iuuni\source\repos\iuuniang\IIME\bin\Debug\IIME.pdb
-C:\Users\iuuni\source\repos\iuuniang\IIME\obj\Debug\IIME.csproj.AssemblyReference.cache
-C:\Users\iuuni\source\repos\iuuniang\IIME\obj\Debug\IIME.csproj.CoreCompileInputs.cache
-C:\Users\iuuni\source\repos\iuuniang\IIME\obj\Debug\IIME.csproj.Up2Date
-C:\Users\iuuni\source\repos\iuuniang\IIME\obj\Debug\IIME.dll
-C:\Users\iuuni\source\repos\iuuniang\IIME\obj\Debug\IIME.pdb
